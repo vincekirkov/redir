@@ -8,5 +8,7 @@ RUN apt-get install -y
 RUN apt-get install redir -y
 RUN apt-get install nano -y
 RUN apt-get install wget -y
-
-ENTRYPOINT ["/bin/sh", "-c", "/usr/bin/redir --laddr=0.0.0.0 --lport=$localport  --caddr=$address --cport=$remoteport"]
+RUN wget https://raw.githubusercontent.com/vincekirkov/redir/master/redir.sh
+RUN chmod +x redir.sh
+RUN mv redir.sh /redir.sh
+ENTRYPOINT ["/redir.sh"]
